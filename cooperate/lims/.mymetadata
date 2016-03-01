@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="lims"
+  id="myeclipse.1456388696473"
+  context-root="/lims"
+  j2ee-spec="5.0"
+  archive="lims.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+
