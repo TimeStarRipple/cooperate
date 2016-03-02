@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lims.dao.RoleDao">
+
+	<resultMap type="Role" id="roleMap">
+		<result property="role" column="role"/>
+		<result property="createDate" column="create_date"/>
+		<result property="roleName" column="role_name"/>
+		<result property="roleType" column="role_type"/>
+		<result property="roleDesc" column="role_desc"/>
+	</resultMap>
+	
+	<select id="selectRoleByPage" resultMap="roleMap">
+		select * from lims_role where #{query} and role_type=1
+		ORDER BY create_date DESC LIMIT #{pageNum},#{pageSize}
+	</select>
+	
+	<select id="selectPageCount" resultType="int" parameterType="String">
+		select count(*) from lims_role where #{query} and role_type=1
+	</select>
+	
+	<select id="selectRoleById" resultMap="roleMap">
+	    select * from lims_role where id=#{id}
+	</select>
+	
+	<insert id="insertRoleMenu" parameterType="int">
+		insert into lims_role_menu(role,menu_id,parent_id) values(#{role},#{menuId},#{parentId})
+	</insert>
+	
+	<insert id="insertRole">
+		insert into lims_role(role,create_date,role_name,role_type) values(#{role},#{createDate},#{roleName}，#{roleType})
+	</insert>
+	
+	<update id="updateRole" resultType="int" parameterType="Role">
+		update lims_role set role_name=#{roleName},role_desc=#{roleDesc} where role=#{role}
+	</update>
+</mapper>

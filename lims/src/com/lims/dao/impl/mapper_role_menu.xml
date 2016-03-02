@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lims.dao.RoleMenuDao">
+    <resultMap type="RoleMenu" id="roleMenuMap">
+        <result property="role" column="role"/>
+        <result property="menuId" column="menu_id"/>
+        <result property="parentId" column="parent_id"/>
+    </resultMap>
+    
+    <select id="selectRoleMenuCount" resultType="int">
+    	select count(*) from lims_role_menu where role=#{id}
+    </select>
+    
+    <select id="selectRoleMenuByRole" resultMap="roleMenuMap">
+    	select * from lims_role_menu where role=#{id}
+    </select>
+    
+    <delete id="deleteRoleMenuByRole" parameterType="int">
+    	delete from lims_role_menu where role=#{roleId}
+    </delete>
+    
+    <insert id="insertRoleMenu" parameterMap="roleMenuMap">
+    	insert into lims_role_menu(role,menu_id,parent_id) values(#{role},#{menuId},#{parentId})
+    </insert>
+</mapper>
