@@ -1,6 +1,7 @@
 package com.lims.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 耗材表
@@ -26,16 +27,29 @@ public class Consumable implements Serializable {
 	 */
 	private String name;
 	
+	/**
+	 * 耗材描述
+	 */
+	private String desc;
+	
+	/**
+	 * 耗材创建时间
+	 */
+	private Date createTime;
+	
 	public Consumable()
 	{
 		super();
 	}
 
-	public Consumable(int id, int number, String name) {
+	public Consumable(int id, int number, String name, String desc,
+			Date createTime) {
 		super();
 		this.id = id;
 		this.number = number;
 		this.name = name;
+		this.desc = desc;
+		this.createTime = createTime;
 	}
 
 	public int getId() {
@@ -62,8 +76,25 @@ public class Consumable implements Serializable {
 		this.name = name;
 	}
 
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
 	@Override
-	public String toString() {
+	public String toString() 
+	{
 		StringBuilder builder = new StringBuilder();
 		builder.append("Consumable [id=");
 		builder.append(id);
@@ -71,8 +102,11 @@ public class Consumable implements Serializable {
 		builder.append(number);
 		builder.append(", name=");
 		builder.append(name);
+		builder.append(", desc=");
+		builder.append(desc);
+		builder.append(", createTime=");
+		builder.append(createTime);
 		builder.append("]");
 		return builder.toString();
-	}
-    
+	} 
 }

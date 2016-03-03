@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lims.dao.ConsumableDao">
+    <resultMap type="Consumable" id="consumableMap">
+        <result property="id" column="consumable_id"/>
+        <result property="name" column="consumable_name"/>
+        <result property="number" column="consumable_number"/>
+        <result property="desc" column="consumable_desc"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <select id="selectConsumableByPage" resultMap="consumableMap">
+        select * from lims_consumable where #{query} ORDER BY create_time DESC
+        LIMIT #{pageNum} #{pageSize}
+    </select>
+    
+    <select id="selectPageCount" resultType="int">
+        select count(*) from lims_consumable where #{query} 
+    </select>
+    
+    <insert id="insertConsumable" parameterMap="consumableMap">
+        insert into lims_consumable(consumable_name,consumable_number,consumable_desc,create_time)
+        values(#{name},#{number},#{desc},#{createTime})
+    </insert>
+    
+    <update id="updateConsumable" parameterMap="consumableMap">
+        update lims_consumable set consumable_name=#{name},consumable_number=#{number},consumable_desc=#{desc}
+        where consumable_id=#{id}
+    </update>
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lims.dao.InstrumentDao">
+    <resultMap type="Instrument" id="instrumentMap">
+        <result property="id" column="instrument_id"/>
+        <result property="name" column="instrument_name"/>
+        <result property="number" column="instrument_number"/>
+        <result property="desc" column="instrument_desc"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+    
+    <select id="selectInstrumentByPage" resultMap="instrumentMap">
+        select * from lims_instrument where #{query} 
+        ORDER BY create_time DESC 
+        LIMIT #{pageNum} #{pageSize}
+    </select>
+    
+    <select id="selectPageCount" resultType="int">
+        select count(*) lims_instrument where #{query}
+    </select>
+    
+    <insert id="insertInstrument" parameterMap="instrumentMap">
+        insert into lims_instrument(instrument_name,instrument_number,instrument_desc,create_time)
+        values(#{name},#{number},#{desc},#{createTime})
+    </insert>
+    
+    <update id="updateInstrument" parameterType="instrumentMap">
+        update lims_instrument set instrument_name=#{name},instrument_desc=#{desc},instrument_number=#{number}
+        where instrument_id=#{id}
+    </update>
+</mapper>
