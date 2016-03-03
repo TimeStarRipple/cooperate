@@ -69,13 +69,19 @@ public class InstrumentController extends BaseController {
 		}
 	}
 	
+	/**
+	 * 编辑仪器
+	 * @param id
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@ResponseBody
 	@RequestMapping(value="/edit/{id}",method={RequestMethod.POST,RequestMethod.GET})
-	public String editInstrument(@PathVariable("id")int id,HttpServletRequest request,Model model)
+	public Object editInstrument(@PathVariable("id")int id,HttpServletRequest request,Model model)
 	{
 		Instrument instrument=instrumentService.getInstrumentById(id);
-		
-		model.addAttribute("instrument", instrument);
-		return "instrument/instrument_edit";
+		return instrument;
 	}
 	
 	@ResponseBody

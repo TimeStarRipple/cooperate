@@ -14,6 +14,8 @@ public interface ConsumableDao {
 	
 	public int selectPageCount(@Param("query")String query);
 	
+	public int selectConsumableById(@Param("id")int id);
+	
 	public int updateConsumable(Consumable consumable);
 	
 }

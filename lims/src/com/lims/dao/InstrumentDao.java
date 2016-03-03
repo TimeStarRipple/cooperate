@@ -12,6 +12,8 @@ public interface InstrumentDao {
 	
 	public int selectPageCount(@Param("query")String query);
 	
+	public int selectInstrumentById(@Param("id")int id);
+	
 	public int insertInstrument(Instrument instrument);
 	
 	public int updateInstrument(Instrument instrument);
