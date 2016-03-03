@@ -32,7 +32,7 @@
 		insert into lims_role(role,create_date,role_name,role_type) values(#{role},#{createDate},#{roleName}，#{roleType})
 	</insert>
 	
-	<update id="updateRole" resultType="int" parameterType="Role">
+	<update id="updateRole" >
 		update lims_role set role_name=#{roleName},role_desc=#{roleDesc} where role=#{role}
 	</update>
 </mapper>

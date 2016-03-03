@@ -16,16 +16,20 @@
         LIMIT #{pageNum} #{pageSize}
     </select>
     
+    <select id="selectInstrumentById">
+        select * from lims_instrument where instrument_id=#{id}
+    </select>
+    
     <select id="selectPageCount" resultType="int">
         select count(*) lims_instrument where #{query}
     </select>
     
-    <insert id="insertInstrument" parameterMap="instrumentMap">
+    <insert id="insertInstrument" >
         insert into lims_instrument(instrument_name,instrument_number,instrument_desc,create_time)
         values(#{name},#{number},#{desc},#{createTime})
     </insert>
     
-    <update id="updateInstrument" parameterType="instrumentMap">
+    <update id="updateInstrument">
         update lims_instrument set instrument_name=#{name},instrument_desc=#{desc},instrument_number=#{number}
         where instrument_id=#{id}
     </update>

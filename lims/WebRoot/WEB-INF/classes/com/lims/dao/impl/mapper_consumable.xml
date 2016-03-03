@@ -15,6 +15,10 @@
         LIMIT #{pageNum} #{pageSize}
     </select>
     
+    <select id="selectConsumableById" resultMap="consumableMap">
+        select * from lims_consumable where consumable_id=#{id}
+    </select>
+    
     <select id="selectPageCount" resultType="int">
         select count(*) from lims_consumable where #{query} 
     </select>
