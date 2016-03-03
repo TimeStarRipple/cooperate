@@ -29,9 +29,10 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			if (request.getHeader("x-requested-with") != null && request.getHeader("x-requested-with").equalsIgnoreCase("XMLHttpRequest"))
 			{ 
 	            response.setHeader("sessionstatus", "timeout");//在响应头设置session状态  
-	        }else
+	        }
+			else
 	        {
-	        	response.sendRedirect(request.getContextPath()+"/login.jsp");
+	        	response.sendRedirect(request.getContextPath()+"/login");
 	        	return false;
 	        }  
 		}
