@@ -47,4 +47,47 @@ public class ConsumableServiceImpl implements ConsumableService {
 		}
 		return result;
 	}
+
+	public boolean createConsumable(Consumable consumable) {
+		int result=0;
+		try
+		{
+			result=consumableDao.insertConsumable(consumable);
+		}
+		catch(Exception ex)
+		{
+			logger.error("[ConsumableServiceImpl][createConsumable] consumable:"+consumable+"-"+ex.getLocalizedMessage()+":"+
+		        ex.getMessage(),ex.getCause());
+		}
+		return result>0?true:false;
+	}
+
+	public Consumable getConsumableById(int id) {
+		Consumable consumable=null;
+		try
+		{
+			consumable=consumableDao.selectConsumableById(id);
+		}
+		catch(Exception ex)
+		{
+			logger.error("[ConsumableServiceImpl][getConsumableById] id:"+id+"-"+ex.getLocalizedMessage()+":"+
+		        ex.getMessage(),ex.getCause());
+		}
+		
+		return consumable;
+	}
+
+	public boolean modifyConsumable(Consumable consumable) {
+		int result=0;
+		try
+		{
+			result=consumableDao.updateConsumable(consumable);
+		}
+		catch(Exception ex)
+		{
+			logger.error("[ConsumableServiceImpl][modifyConsumable] consumable:"+consumable+"-"+ex.getLocalizedMessage()+":"+
+		        ex.getMessage(),ex.getCause());
+		}
+		return result>0?true:false;
+	}
 }

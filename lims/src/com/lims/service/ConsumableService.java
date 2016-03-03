@@ -11,4 +11,10 @@ public interface ConsumableService {
 
 	public int getPageCount(String filterCondition);
 
+	public boolean createConsumable(Consumable consumable);
+
+	public Consumable getConsumableById(int id);
+
+	public boolean modifyConsumable(Consumable consumable);
+
 }

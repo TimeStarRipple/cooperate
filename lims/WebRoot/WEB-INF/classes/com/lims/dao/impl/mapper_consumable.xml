@@ -23,12 +23,12 @@
         select count(*) from lims_consumable where #{query} 
     </select>
     
-    <insert id="insertConsumable" parameterMap="consumableMap">
+    <insert id="insertConsumable">
         insert into lims_consumable(consumable_name,consumable_number,consumable_desc,create_time)
         values(#{name},#{number},#{desc},#{createTime})
     </insert>
     
-    <update id="updateConsumable" parameterMap="consumableMap">
+    <update id="updateConsumable">
         update lims_consumable set consumable_name=#{name},consumable_number=#{number},consumable_desc=#{desc}
         where consumable_id=#{id}
     </update>
