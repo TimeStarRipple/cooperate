@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实验室管理系统-教师</title>
+    <link type="text/css" rel="stylesheet" href="../../css/top-style.css">
+    <link type="text/css" rel="stylesheet" href="../../css/footer-style.css">
+    <link type="text/css" rel="stylesheet" href="../../css/content-style.css">
+    <link type="text/css" rel="stylesheet" href="../../css/table-style.css">
+</head>
+<body>
+<div class="head">
+    <div class="container">
+        <img src="../../images/logo.png">
+        <span id="welcome">Welcome！<strong>王艺桦</strong>老师</span>
+    </div>
+</div>
+<div class="container-all"  style="position: relative; min-width: 1022px;">
+    <div class="container-left">
+        <ul>
+            <li class="nav-item">
+                <a href="/tcAnn/listAnn">发布公告<span class="arrow">&gt;</span></a>
+            </li>
+            <li class="nav-item" id="choose">
+                <a href="/tcLab/listLab">实验预约<span class="arrow">&gt;</span></a>
+            </li>
+        </ul>
+
+    </div>
+    <div class="container-right" id="contain">
+        <div class="content" id="content">
+            <h2 class="title">实验预约</h2>
+            <table>
+                <tr>
+                    <th>课程名称</th>
+                    <th>日期</th>
+                    <th>时间段</th>
+                    <th>地点</th>
+                    <th>最大人数</th>
+                    <th>现有人数</th>
+                    <th>仪器</th>
+                    <th>耗材</th>
+                    <th>状态</th>
+                </tr>
+                <#list paging_vo.object as r>
+                <tr>
+                    <td  class="lesson">${r.name}</td>
+                    <td>${r.date}</td>
+                    <td>${r.time}</td>
+                    <td>${r.place}</td>
+                    <td>${r.max}</td>
+                    <td>${r.number}</td>
+                    <td>${r.instr_name}：${r.instr_number}</td>
+                    <td>${r.consum_name}：${r.consum_number}</td>
+                    <td><#if r.sort==1>审核中...<#elseif r.sort==2>已通过<#else>已结束</#if></td>
+                </tr>
+                </#list>
+            </table>
+        </div>
+        <div class="create">
+            <a href="/tcLab/create">实验预约</a>
+        </div>
+        <div class="container-all footer" id="footer">
+            <div class="link">
+                <ul>
+                    <li class="link-item">
+                        <span>友情链接</span>
+                    </li>
+                    <li class="link-item">
+                        <a href="#">武汉理工大学</a>
+                    </li>
+                    <li class="link-item">
+                        <a href="#">武汉理工大学教务管理系统</a>
+                    </li>
+                    <li class="link-item">
+                        <a href="#">武汉理工大学教务处</a>
+                    </li>
+                    <li class="link-item">
+                        <a href="#">中国知网</a>
+                    </li>
+                </ul>
+            </div>
+            <span class="footer-tip">版权所有©锐威技术组</span>
+        </div>
+    </div>
+    <script>
+        var a=document.getElementById("contain");
+        var b=document.getElementById("content");
+        var c=document.getElementById("footer");
+        a.style.height= b.offsetHeight+ c.offsetHeight+50+"px";
+        a.style.minHeight=document.documentElement.clientHeight-100+"px";
+    </script>
+</div>
+</body>
+</html>

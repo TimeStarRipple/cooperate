@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.labcontroller.dao.InstrDao">
+	<resultMap type="Instrument" id="instrMap">
+		<id column="instrument_id" property="id"/>
+		<result column="instrument_name" property="name"/>
+		<result column="instrument_number" property="number"/>
+	</resultMap>
+	
+	<select id="selectInstrByPage" resultMap="instrMap">
+	  	select * from instrument ORDER BY
+		instrument_id DESC LIMIT #{pageNum},#{pageSize}
+	</select>
+	
+	<select id="selectPageCount" resultType="int">
+		select count(*) from instrument
+	</select>
+	
+	<select id="selectInstrById" resultMap="instrMap">
+		  select * from instrument where instrument_id=#{id}
+	</select> 
+	
+	<select id="selectInstr" resultMap="instrMap">
+		  select * from instrument
+	</select> 
+	
+	<update id="updateInstr" parameterType="Instrument">
+		update instrument 
+		set instrument_name=#{name},instrument_number=#{number}
+		where instrument_id=#{id}
+	</update>
+	
+	<delete id="deleteInstrById">
+		delete from instrument
+		where instrument_id=#{id}
+	</delete>
+	
+	<insert id="addInstr" parameterType="Instrument">
+		insert into
+		instrument(instrument_name,instrument_number)
+		values
+        (#{name},#{number})
+	</insert>
+	
+</mapper>

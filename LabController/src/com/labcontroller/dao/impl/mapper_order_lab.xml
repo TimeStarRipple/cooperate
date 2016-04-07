@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.labcontroller.dao.AddLabDao">
+
+	<resultMap type="OrderLab" id="labsMap">
+        <id column="experiment_id" property="id"></id>
+        <result column="experiment_name" property="name"></result>
+        <result column="experiment_teacher" property="teacher"></result>  	 
+        <result column="experiment_date" property="date"></result>
+        <result column="experiment_time" property="time"></result>  
+        <result column="experiment_over" property="over"></result>  
+        <result column="experiment_place" property="place"></result>  
+        <result column="experiment_sort" property="sort"></result>  
+        <result column="experiment_max" property="max"></result> 
+        <result column="experiment_number" property="number"></result>
+        <result column="instrument_id" property="instr_id"></result>  
+        <result column="instrument_number" property="instr_number"></result> 
+        <result column="consumable_id" property="consum_id"></result>
+        <result column="consumable_number" property="consum_number"></result>
+	</resultMap>
+	
+	<select id="selectOrderLabByPage" resultMap="labsMap">
+	  	select * from experiment where experiment_sort=#{sort} ORDER BY
+		experiment_over DESC LIMIT #{pageNum},#{pageSize}
+	</select>
+	
+	<select id="selectAddOrderLabByPage" resultMap="labsMap">
+	  	select * from experiment where experiment_sort=#{sort} and experiment_id NOT IN(select lab_id from user_lab where user_id=#{user_id})
+	  	ORDER BY
+		experiment_over DESC LIMIT #{pageNum},#{pageSize}
+	</select>
+	
+	<select id="selectOrderLabBySort" resultMap="labsMap">
+	  	select * from experiment where experiment_sort=#{sort}
+	</select>
+	
+	<select id="selectOrderLabById" resultMap="labsMap">
+	  	select * from experiment where experiment_id=#{id}
+	</select>
+	
+	<select id="selectPageCount" resultType="int">
+		select count(*) from experiment
+	</select>
+	
+	<select id="getPageCount" resultType="int">
+		select count(*) from experiment where experiment_sort=#{sort}
+	</select>
+	
+	<select id="selectStuLabByPage" resultMap="labsMap">
+	  	select * from experiment where experiment_sort=#{sort} and experiment_id IN(select lab_id from user_lab where user_id=#{user_id})
+	  	ORDER BY experiment_over DESC LIMIT #{pageNum},#{pageSize}
+	</select>
+	
+	<select id="selectTcLabByPage" resultMap="labsMap">
+	  	select * from experiment where experiment_id IN(select lab_id from user_lab where user_id=#{user_id})
+	  	ORDER BY experiment_over DESC LIMIT #{pageNum},#{pageSize}
+	</select>
+	
+	<select id="getMaxId" resultType="int">
+		  select max(experiment_id) from experiment
+	</select>
+	
+	<insert id="insertLab" >
+			insert into
+			experiment(experiment_name,experiment_teacher,experiment_date,experiment_time,experiment_over,experiment_place,experiment_sort,
+			experiment_max,experiment_number,instrument_id,instrument_number,consumable_id,consumable_number)
+			values
+        	(#{name},#{teacher},#{date},#{time},#{over},#{place},#{sort},#{max},#{number},#{instr_id},#{instr_number},#{consum_id},#{consum_number})  
+	</insert> 
+	
+	<update id="updateNumber" >
+		update experiment 
+		set experiment_number=#{number}
+		where experiment_id=#{id}
+	</update>
+	
+	<update id="modifySortById" >
+		update experiment 
+		set experiment_sort=#{sort}
+		where experiment_id=#{id}
+	</update>
+	
+	<delete id="deleteLabById">
+		delete from experiment
+		where experiment_id=#{id}
+	</delete>
+	
+</mapper>

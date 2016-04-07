@@ -1,0 +1,26 @@
+.footer{
+    position: absolute;
+    bottom: 0;
+    border-top: 3px solid #1d32fa;
+}
+.link{
+    width: 650px;
+    margin: 0 auto;
+}
+.link-item{
+    display: inline-block;
+}
+.link-item a{
+    height: 30px;
+    line-height: 30px;
+    padding: 0 5px;
+}
+.footer-tip{
+    display: block;
+    width: 100%;
+    min-width: 650px;
+    height: 30px;
+    float: left;
+    line-height: 30px;
+    text-align: center;
+}

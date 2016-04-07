@@ -1,0 +1,39 @@
+table,th,td,tr{
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    border: 1px solid ;
+}
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+th{
+    margin: 0 8px;
+}
+.create{
+    width: 100%;
+    min-width: 540px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+}
+.create a{
+    padding: 2px 3px;
+    font-size: 15px;
+    color: white;
+    background-color: #4480fa;
+    border: 1px solid #1d32fa;
+    border-radius: 5px;
+}
+.content a:hover{
+    color: #1d32fa;
+}
+.lesson{
+    max-width: 260px;
+}
+.content{
+    width: 940px;
+    margin: 0 auto;
+}

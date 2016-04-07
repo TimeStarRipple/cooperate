@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实验室管理系统-管理员</title>
+    <link type="text/css" rel="stylesheet" href="../../css/top-style.css">
+    <link type="text/css" rel="stylesheet" href="../../css/footer-style.css">
+    <link type="text/css" rel="stylesheet" href="../../css/content-style.css">
+    <link type="text/css" rel="stylesheet" href="../../css/create-style.css">
+    <script type="text/javascript" src="../../js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="../../xheditor/xheditor-1.1.14-zh-cn.min.js"></script>
+</head>
+<body>
+<div class="head">
+    <div class="container">
+        <img src="../../images/logo.png">
+        <span id="welcome">Welcome！<strong>${login_session_users.username}</strong>管理员</span>
+    </div>
+</div>
+<div class="container-all"  style="position: relative; min-width: 1022px;">
+    <div class="container-left">
+        <ul>
+            <li class="nav-item">
+               <a href="/adminLab/listTestLab">预约审核<span class="arrow">&gt;</span></a>
+            </li>
+            <li class="nav-item">
+                <a href="/adminInstr/listInstr">仪器管理<span class="arrow">&gt;</span></a>
+            </li>
+            <li class="nav-item"  id="choose">
+                <a href="/adminConsum/listConsum">耗材管理<span class="arrow">&gt;</span></a>
+            </li>
+        </ul>
+
+    </div>
+    <div class="container-right" id="contain">
+        <div class="content" id="content">
+            <h2 class="title">添加耗材</h2>
+            <form action="/adminConsum/create" method="post">
+                <label>耗材名称：
+                    <input name="name" type="text" required>
+                </label>
+                <br/>
+                <label>耗材数量：
+                    <input name="number" type="number" step="2" required>
+                </label>
+                <br/>
+                <label>
+                    <p>耗材描述：</p>
+                    <br/>
+                    <textarea rows="20" cols="70" name="describe" class="xheditor"></textarea>
+                </label>
+                <input type="submit" value="添加" id="button">
+            </form>
+        </div>
+        <div class="container-all footer" id="footer">
+            <div class="link">
+                <ul>
+                    <li class="link-item">
+                        <span>友情链接</span>
+                    </li>
+                    <li class="link-item">
+                        <a href="#">武汉理工大学</a>
+                    </li>
+                    <li class="link-item">
+                        <a href="#">武汉理工大学教务管理系统</a>
+                    </li>
+                    <li class="link-item">
+                        <a href="#">武汉理工大学教务处</a>
+                    </li>
+                    <li class="link-item">
+                        <a href="#">中国知网</a>
+                    </li>
+                </ul>
+            </div>
+            <span class="footer-tip">版权所有©锐威技术组</span>
+        </div>
+    </div>
+    <script>
+        var a=document.getElementById("contain");
+        var b=document.getElementById("content");
+        var c=document.getElementById("footer");
+        a.style.height= b.offsetHeight+ c.offsetHeight+50+"px";
+        a.style.minHeight=document.documentElement.clientHeight-100+"px";
+    </script>
+</div>
+</body>
+</html>

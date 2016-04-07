@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实验室管理系统-教师</title>
+    <link type="text/css" rel="stylesheet" href="../../css/top-style.css">
+    <link type="text/css" rel="stylesheet" href="../../css/footer-style.css">
+    <link type="text/css" rel="stylesheet" href="../../css/content-style.css">
+    <link type="text/css" rel="stylesheet" href="../../css/create-style.css">
+    <script type="text/javascript" src="../../js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="../../xheditor/xheditor-1.1.14-zh-cn.min.js"></script>
+</head>
+<body>
+<div class="head">
+    <div class="container">
+        <img src="../../images/logo.png">
+        <span id="welcome">Welcome！<strong>${login_session_users.username}</strong>老师</span>
+    </div>
+</div>
+<div class="container-all"  style="position: relative; min-width: 1022px;">
+    <div class="container-left">
+        <ul>
+            <li class="nav-item">
+                <a href="/tcAnn/listAnn">发布公告<span class="arrow">&gt;</span></a>
+            </li>
+
+            <li class="nav-item" id="choose">
+                <a href="/tcLab/listLab">实验预约<span class="arrow">&gt;</span></a>
+            </li>
+        </ul>
+
+    </div>
+    <div class="container-right" id="contain">
+        <div class="content" id="content">
+            <h2 class="title">实验预约</h2>
+            <form action="/tcLab/create" method="post">
+                <label>实验名称：
+                    <input name="name" type="text" required>
+                </label>
+                <br/>
+                <label>教师姓名：
+                    <input name="teacher" type="text" required>
+                </label>
+                <br/>
+                <label>实验日期：
+                    <input name="date" type="date" required>
+                      <script>
+                    			var controldate; 
+								function checkDate(){ 
+									controldate= document.getElementById("sendDate").value; 
+								if(controldate==""){ 
+									alert('日期不能为空'); 
+								return false; 
+								}else{ 
+									var day = new Date(); var Year = 0; 
+									var Month = 0; 
+									var Day = 0; 
+									var CurrentDate = ""; 
+								//初始化时间 
+									Year = day.getFullYear(); 
+									Month = day.getMonth()+1; 
+									Day = day.getDate(); 
+								
+									CurrentDate += Year + "-"; 
+								
+									if (Month >= 10 ) 
+									{ 
+										CurrentDate += Month + "-"; 
+									} 
+									else 
+									{ 
+										CurrentDate += "0" + Month + "-"; 
+									} 
+									if (Day >= 10 ) 
+									{ 
+										CurrentDate += Day ; 
+									} 
+									else 
+									{ 
+										CurrentDate += "0" + Day ; 
+									} //alert(CurrentDate);//当前日期 
+								
+									var startDate = new Date(CurrentDate.replace("-",",")).getTime() ; 
+									var endDate = new Date(controldate.replace("-",",")).getTime() ; if( startDate > endDate ) 
+									{ 
+										alert('选择日期不能小于当前日期！'); 
+										document.getElementById("sendDate").focus(); 
+										return false; 
+									}else{ 
+										return true; 
+										} 
+									} 
+								}
+                    </script>
+                </label>
+                <br/>
+                <label>实验时间：
+                    <select name="time">
+                        <option value="08:00~09:40">08:00~09:40</option>
+                        <option value="10:00~11:50">10:00~11:50</option>
+                        <option value="12:00~14:00">12:00~14:00</option>
+                        <option value="14:00~15:40">14:00~15:40</option>
+                        <option value="16:00~17:40">16:00~17:40</option>
+                        <option value="18:30~20:30">18:30~20:30</option>
+                    </select>
+                  
+                </label>
+                <br/>
+                <label>实验地点：
+                    <input name="place" type="text" required>
+                </label>
+                <br/>
+                <label>实验人数：
+                    <input name="max" type="text" required>
+                </label>
+                <br/>
+                <label>仪器名称：
+                	<select name="instr_id">
+                		<option value=""></option>
+                		<#list listInstr as r>
+                        <option value="${r.id}">${r.name} 现有数量：${r.number}</option>
+                        </#list>
+                    </select>
+                    数量：<input name="instr_number" type="number" max="50" step="2" placeholder="最大数量为50">
+                </label>
+                <br/>
+                <label>耗材名称：
+                	<select name="consum_id">
+                		<option value=""></option>
+                		<#list listCon as r>
+                        <option value="${r.id}">${r.name} 现有数量：${r.number}</option>
+                        </#list>
+                    </select>
+                    数量：<input name="consum_number" type="number" max="100" step="2" placeholder="最大数量为100">
+                </label>
+                <br/>
+                
+                <input type="submit" value="预约" id="button">
+            </form>
+        </div>
+        <div class="container-all footer" id="footer">
+            <div class="link">
+                <ul>
+                    <li class="link-item">
+                        <span>友情链接</span>
+                    </li>
+                    <li class="link-item">
+                        <a href="#">武汉理工大学</a>
+                    </li>
+                    <li class="link-item">
+                        <a href="#">武汉理工大学教务管理系统</a>
+                    </li>
+                    <li class="link-item">
+                        <a href="#">武汉理工大学教务处</a>
+                    </li>
+                    <li class="link-item">
+                        <a href="#">中国知网</a>
+                    </li>
+                </ul>
+            </div>
+            <span class="footer-tip">版权所有©锐威技术组</span>
+        </div>
+    </div>
+    <script>
+        var a=document.getElementById("contain");
+        var b=document.getElementById("content");
+        var c=document.getElementById("footer");
+        a.style.height= b.offsetHeight+ c.offsetHeight+50+"px";
+        a.style.minHeight=document.documentElement.clientHeight-100+"px";
+    </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.labcontroller.dao.AnnDao">
+
+	<resultMap type="Announcement" id="annMap">
+		<id column="an_id" property="id"/>
+		<result column="an_name" property="name"/>
+		<result column="an_teacher" property="teacher"/>
+		<result column="an_text" property="text"/>
+		<result column="an_time" property="time"/>
+	</resultMap>
+	
+	<select id="selectAnnByPage" resultMap="annMap">
+	  	select * from announcement ORDER BY
+		an_id DESC LIMIT #{pageNum},#{pageSize}
+	</select>
+	
+	<select id="selectPageCount" resultType="int">
+		select count(*) from announcement
+	</select>
+	
+	<select id="selectAnnById" resultMap="annMap">
+		  select * from announcement where an_id=#{id}
+	</select> 
+	
+	<select id="selectTcAnnByPage" resultMap="annMap">
+	  	select * from announcement where an_id IN(select ann_id from user_ann where user_id=#{user_id})
+	  	ORDER BY an_id DESC LIMIT #{pageNum},#{pageSize}
+	</select>
+	
+	<select id="getMaxId" resultType="int">
+		select max(an_id) from announcement
+	</select>
+	
+	<update id="updateAnn" parameterType="Announcement">
+		update announcement 
+		set an_name=#{name},an_text=#{text},an_time=#{time}
+		where an_id=#{id}
+	</update>
+	
+	<insert id="insertAnn" >
+		insert into
+		announcement(an_teacher,an_text,an_time,an_name)
+		values
+        (#{teacher},#{text},#{time},#{name})
+	</insert>
+	
+	<delete id="deleteAnnById">
+		delete from announcement
+		where an_id=#{id}
+	</delete>
+</mapper>

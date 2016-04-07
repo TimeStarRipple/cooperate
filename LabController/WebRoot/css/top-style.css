@@ -1,0 +1,40 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 微软雅黑;
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    cursor: pointer;
+}
+.head{
+    width: 100%;
+    background-image: -moz-linear-gradient(top, #a8cbff, #1d32fa); /* Firefox */
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #a8cbff), color-stop(1, #1d32fa)); /* Saf4+, Chrome */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8fa1ff', endColorstr='#1d32fa', GradientType='0'); /* IE*/
+}
+.container{
+    width: 1022px;
+    margin: 0 auto;
+    overflow: hidden;
+    zoom: 1;
+}
+.container-all{
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    zoom: 1;
+}
+.head img{
+    float: left;
+}
+#welcome{
+    float: right;
+    height: 100px;
+    line-height: 100px;
+    font-weight: 600;
+    color: #2a47ed;
+}

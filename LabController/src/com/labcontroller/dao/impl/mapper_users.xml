@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.labcontroller.dao.UserDao">
+
+	<resultMap type="Users" id="usersMap">
+		<result column="user_id" property="id"/>
+		<result column="user_number" property="usernumber"/>
+		<result column="user_password" property="password"/>
+		<result column="user_name" property="username"/>
+		<result column="user_sort" property="sort"/>		
+	</resultMap>
+	
+	<select id="selectUserByUsername" resultMap="usersMap">
+		select * from user where user_number=#{usernumber} and user_sort=#{sort}
+	</select>
+	
+</mapper>

@@ -48,7 +48,8 @@ public class ConsumableServiceImpl implements ConsumableService {
 		return result;
 	}
 
-	public boolean createConsumable(Consumable consumable) {
+	public boolean createConsumable(Consumable consumable) 
+	{
 		int result=0;
 		try
 		{
@@ -62,7 +63,8 @@ public class ConsumableServiceImpl implements ConsumableService {
 		return result>0?true:false;
 	}
 
-	public Consumable getConsumableById(int id) {
+	public Consumable getConsumableById(int id) 
+	{
 		Consumable consumable=null;
 		try
 		{
@@ -77,7 +79,8 @@ public class ConsumableServiceImpl implements ConsumableService {
 		return consumable;
 	}
 
-	public boolean modifyConsumable(Consumable consumable) {
+	public boolean modifyConsumable(Consumable consumable) 
+	{
 		int result=0;
 		try
 		{

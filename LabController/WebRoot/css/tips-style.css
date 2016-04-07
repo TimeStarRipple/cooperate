@@ -1,0 +1,16 @@
+.content a{
+    display: block;
+    height: 50px;
+    padding-left: 80px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-height: 50px;
+    font-size: 18px;
+    color: #555555;
+    background:url("../images/icon.png") no-repeat 2px 19px;
+    border-bottom: 1px dotted #4480fa;
+}
+.content a:hover{
+    color: #1d32fa;
+}

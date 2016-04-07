@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css"href="/css/login.css"/>
+	<link type="text/css" rel="stylesheet" href="/css/top-style.css">
+	<link type="text/css" rel="stylesheet" href="/css/footer-style.css">
+	 <script src="/js/jquery.js" type="text/javascript"></script>
+     <script src="/js/jquery.form.js" type="text/javascript"></script>
+     <script src="/js/jquery.formPlugin.js" type="text/javascript"></script>
+     <script src="/js/jquery.validate.min.js" type="text/javascript"></script>
+     <script src="/layer/layer.js" type="text/javascript"></script>
+	<title>登录界面</title>
+</head>
+
+<body style="background:#C4B8E2">
+	<div class="head">
+		<div class="container">
+			<img src="../images/logo.png">
+		</div>
+	</div>
+
+	<form id="login"action="/login" method="post">
+		<h1>Welcome</h1>
+		<fieldset id="login_putin">
+			<p>用户名：<input id="username" name="username"type="text" placeholder="请输入用户名" autofocus required></p>                <!--placeholder – 输入框的简短提示，当该输入框获得输入焦点时，该提示信息自动消失-->
+			<br>
+			<p>密&nbsp;&nbsp;&nbsp;码：<input id="password" name="password"type="password" placeholder="请输入密码" required></p>           <!--autofocus – 指定输入框是否在页面加载完毕自动获取输入焦点--> <!--required – 指定该输入元素是否必须提供 -->
+		</fieldset>
+		<fieldset id="login_select">
+			<p>
+			<input type="radio" checked="checked" name="userkind" value="student"/>学生
+			<input type="radio" checked="checked" name="userkind" value="teacher"/>教师
+			<input type="radio" checked="checked" name="userkind" value="admin"/>管理员
+			</p>
+		</fieldset>
+		<fieldset id="login_btn">
+			<input type="submit" id="submit" value="登录系统">
+		</fieldset>
+		<fieldset id="forgetpassword">
+			<a href="">忘记密码？</a>
+		</fieldset>
+	</form>
+	 <div class="container-all footer" id="footer">
+            <div class="link">
+                <ul>
+                    <li class="link-item">
+                        <span>友情链接</span>
+                    </li>
+                    <li class="link-item">
+                        <a href="#">武汉理工大学</a>
+                    </li>
+                    <li class="link-item">
+                        <a href="#">武汉理工大学教务管理系统</a>
+                    </li>
+                    <li class="link-item">
+                        <a href="#">武汉理工大学教务处</a>
+                    </li>
+                    <li class="link-item">
+                        <a href="#">中国知网</a>
+                    </li>
+                </ul>
+            </div>
+            <span class="footer-tip">版权所有©锐威技术组</span>
+        </div>
+</body>
+<script type="text/javascript">
+$("#login").validate({  
+    rules:{  
+        username:{  
+            required: true, 
+            maxlength: 16,  
+        },
+        password:{  
+            required: true,
+            maxlength: 16,
+        },
+    },  
+    messages:{  
+    	username:{  
+            required: "用户名不能为空",
+            maxlength: "字符长度不能大于16个字符" 
+            
+        },  
+        password:{  
+            required: "密码不能为空",
+            maxlength: "字符长度不能大于16个字符"
+        },
+    },
+    errorPlacement: function(error, element) { //错误信息位置设置方法  
+    	error.appendTo(element.parent().find(".tipinfo"));                           //这里的element是录入数据的对象  
+    	 },  
+});  
+$(function()
+{
+ 	//提交
+ 	ajaxSubmit("#login",1500);
+});
+</script>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实验室管理系统-教师</title>
+    <link type="text/css" rel="stylesheet" href="../css/top-style.css">
+    <link type="text/css" rel="stylesheet" href="../css/footer-style.css">
+    <link type="text/css" rel="stylesheet" href="../css/content-style.css">
+</head>
+<body>
+<div class="head">
+    <div class="container">
+        <img src="../images/logo.png">
+        <span id="welcome">Welcome！<strong>${login_session_users.username}</strong>老师</span>
+    </div>
+</div>
+<div class="container-all"  style="position: relative; min-width: 1022px;">
+    <div class="container-left">
+        <ul>
+            <li class="nav-item" id="choose">
+                <a href="#">公告详情<span class="arrow">&gt;</span></a>
+            </li>
+        </ul>
+    </div>
+    <div class="container-right" id="contain">
+        <div class="content" id="content">
+            <a href="javascript:history.go(-1);" style="position: absolute;left: 38px;top:13px;font-size: 37px;color: #555">&lt;</a>
+            <h2 class="title">${ann.name}</h2>
+            <p style="text-align: center;font-size: 18px;color: #555;line-height: 40px">${ann.teacher}</p>
+            <p style="text-indent: 2em;font-size: 18px;color: #555;line-height: 31px">
+                ${ann.text}
+            </p>
+
+        </div>
+        <div class="container-all footer" id="footer">
+            <div class="link">
+                <ul>
+                    <li class="link-item">
+                        <span>友情链接</span>
+                    </li>
+                    <li class="link-item">
+                        <a href="#">武汉理工大学</a>
+                    </li>
+                    <li class="link-item">
+                        <a href="#">武汉理工大学教务管理系统</a>
+                    </li>
+                    <li class="link-item">
+                        <a href="#">武汉理工大学教务处</a>
+                    </li>
+                    <li class="link-item">
+                        <a href="#">中国知网</a>
+                    </li>
+                </ul>
+            </div>
+            <span class="footer-tip">版权所有©锐威技术组</span>
+        </div>
+    </div>
+    <script>
+        var a=document.getElementById("contain");
+        var b=document.getElementById("content");
+        var c=document.getElementById("footer");
+        a.style.height= b.offsetHeight+ c.offsetHeight+50+"px";
+        a.style.minHeight=document.documentElement.clientHeight-100+"px";
+    </script>
+</div>
+</body>
+</html>

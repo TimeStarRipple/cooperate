@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.labcontroller.dao.StudentLabDao">
+
+	<resultMap type="UserLab" id="userLabMap">
+        <result column="user_id" property="user_id"></result>
+        <result column="lab_id" property="experiment_id"></result>
+        <result column="user_sort" property="sort"></result>  	 
+	</resultMap>
+	
+	<insert id="insertStudentLab" >
+			insert into
+			user_lab(user_id,lab_id,user_sort)
+			values
+        	(#{user_id},#{experiment_id},#{sort})  
+	</insert>
+	
+	<select id="selectPageCount" resultType="int">
+		select count(*) from user_lab where user_id=#{user_id}
+	</select>
+	
+	<delete id="deleteLabById">
+		delete from user_lab
+		where lab_id=#{id}
+	</delete>
+	
+	<delete id="deleteStuLabById">
+		delete from user_lab
+		where lab_id=#{id} and user_id=#{user_id}
+	</delete>
+	
+</mapper>

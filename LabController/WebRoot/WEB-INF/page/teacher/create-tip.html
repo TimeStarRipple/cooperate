@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实验室管理系统-教师</title>
+    <link type="text/css" rel="stylesheet" href="../../css/top-style.css">
+    <link type="text/css" rel="stylesheet" href="../../css/footer-style.css">
+    <link type="text/css" rel="stylesheet" href="../../css/content-style.css">
+    <link type="text/css" rel="stylesheet" href="../../css/create-style.css">
+    <script type="text/javascript" src="../../js/jquery-1.4.4.min.js"></script>
+    <script src="../../xheditor/xheditor-1.1.14-zh-cn.min.js" type="text/javascript"></script>
+    <script src="/kindeditor/kindeditor-min.js"></script>
+    <script src="/kindeditor/lang/zh_CN.js"></script>
+</head>
+<body>
+<div class="head">
+    <div class="container">
+        <img src="../../images/logo.png">
+        <span id="welcome">Welcome！<strong>${login_session_users.username}</strong>老师</span>
+    </div>
+</div>
+<div class="container-all"  style="position: relative; min-width: 1022px;">
+    <div class="container-left">
+        <ul>
+            <li class="nav-item" id="choose">
+                <a href="/tcAnn/listAnn">发布公告<span class="arrow">&gt;</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a href="/tcLab/listLab">实验预约<span class="arrow">&gt;</span></a>
+            </li>
+        </ul>
+
+    </div>
+    <div class="container-right" id="contain">
+        <div class="content" id="content">
+            <h2 class="title">发布公告</h2>
+            <form id="addForm" action="/tcAnn/create"  method="post">
+                <label>公告标题：
+                    <input name="name" type="text" required>
+                </label>
+                <br/>
+                <label>教师姓名：
+                    <input name="teacher" type="text" required>
+                </label>
+                <br/>
+                <label>
+                    <p>公告内容：</p>
+                    <br/>
+                    <textarea rows="20" cols="70" name="text" class="xheditor"></textarea>
+                </label>
+                <input type="submit" value="发布" id="button">
+            </form>
+        </div>
+        <div class="container-all footer" id="footer">
+            <div class="link">
+                <ul>
+                    <li class="link-item">
+                        <span>友情链接</span>
+                    </li>
+                    <li class="link-item">
+                        <a href="#">武汉理工大学</a>
+                    </li>
+                    <li class="link-item">
+                        <a href="#">武汉理工大学教务管理系统</a>
+                    </li>
+                    <li class="link-item">
+                        <a href="#">武汉理工大学教务处</a>
+                    </li>
+                    <li class="link-item">
+                        <a href="#">中国知网</a>
+                    </li>
+                </ul>
+            </div>
+            <span class="footer-tip">版权所有©锐威技术组</span>
+        </div>
+    </div>
+    <script>
+        var a=document.getElementById("contain");
+        var b=document.getElementById("content");
+        var c=document.getElementById("footer");
+        a.style.height= b.offsetHeight+ c.offsetHeight+50+"px";
+        a.style.minHeight=document.documentElement.clientHeight-100+"px";
+    </script>
+</div>
+</body>
+</html>

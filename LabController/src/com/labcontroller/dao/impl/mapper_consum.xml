@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.labcontroller.dao.ConsumDao">
+	<resultMap type="Consumable" id="consumMap">
+		<id column="consumable_id" property="id"/>
+		<result column="consum_name" property="name"/>
+		<result column="consum_number" property="number"/>
+	</resultMap>
+	
+	<select id="selectConsumByPage" resultMap="consumMap">
+	  	select * from consumable ORDER BY
+		consumable_id DESC LIMIT #{pageNum},#{pageSize}
+	</select>
+	
+	<select id="selectPageCount" resultType="int">
+		select count(*) from consumable
+	</select>
+	
+	<select id="selectConsumById" resultMap="consumMap">
+		  select * from consumable where consumable_id=#{id}
+	</select>
+	
+	<select id="selectConsum" resultMap="consumMap">
+		  select * from consumable
+	</select>  
+	
+	<update id="updateCon" parameterType="Consumable">
+		update consumable 
+		set consum_name=#{name},consum_number=#{number}
+		where consumable_id=#{id}
+	</update>
+	
+	<delete id="deleteConById">
+		delete from consumable
+		where consumable_id=#{id}
+	</delete>
+	
+	<insert id="addCon" parameterType="Consumable">
+		insert into
+		consumable(consum_name,consum_number)
+		values
+        (#{name},#{number})
+	</insert>
+	
+</mapper>

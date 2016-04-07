@@ -1,0 +1,13 @@
+
+label{
+    display: block;
+}
+#button{
+    width: 55px;
+    margin-left: 250px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #4480fa;
+    border: 1px solid #1d32fa;
+    cursor: pointer
+}

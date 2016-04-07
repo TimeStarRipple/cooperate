@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+        http://www.springframework.org/schema/task 
+        http://www.springframework.org/schema/task/spring-task-4.0.xsd">
+        
+	<!-- 1.配置数据源 -->
+	<context:property-placeholder location="classpath*:config/jdbc.properties" />
+ 	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${driver}"></property>
+		<property name="url" value="${url}"></property>
+		<property name="username" value="${user}"></property>
+		<property name="password" value="${password}"></property>
+		<property name="initialSize" value="${initialSize}"></property>
+		<property name="minIdle" value="${minIdle}"></property>
+		<property name="maxIdle" value="${maxIdle}"></property>
+		<property name="maxWait" value="${maxWait}"></property>
+		<property name="maxActive" value="${maxActive}"></property>
+		<!-- testOnBorrow：取得对象时是否进行验证，检查对象是否有效，默认为false -->
+		<property name="testOnBorrow" value="false"></property>
+		<!-- testOnReturn：返回对象时是否进行验证，检查对象是否有效，默认为false -->
+		<property name="testOnReturn" value="true"></property>
+		<!-- testWhileIdle：空闲时是否进行验证，检查对象是否有效，默认为false   -->
+        <property name="testWhileIdle" value="true"></property>
+        <!-- removeAbandoned: 是否自动回收超时连接-->  
+		<property name="removeAbandoned" value="true"/>
+		<!-- removeAbandonedTimeout: 超时时间(以秒数为单位)-->
+		<property name="removeAbandonedTimeout" value="180"/>
+        <property name="timeBetweenEvictionRunsMillis" value="3600000"></property>
+        <property name="minEvictableIdleTimeMillis" value="18000000"></property>
+        <property name="numTestsPerEvictionRun" value="3"></property>
+		<property name="validationQuery" value="SELECT COUNT(*) FROM DUAL"></property>
+		
+	</bean>
+
+	<!-- 2. 配置mybatis 的SqlSession 的工厂: SqlSessionFactoryBean -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="typeAliasesPackage" value="com.labcontroller.entity" />
+		<property name="mapperLocations" value="classpath:com/labcontroller/dao/impl/mapper_*.xml" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.labcontroller.dao" />
+	</bean>
+
+	<!-- 3. 配置事务管理 : DataSourceTransactionManager -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- 4.开启事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<!--5.开启注解并扫描带注解的包 -->
+	<context:annotation-config />
+	
+	<context:component-scan base-package="com.labcontroller"/>
+	
+	<!-- 6.导入schedule -->
+    <!-- <import resource="schedule.xml"/> -->
+    <!-- 6.declare task timer 定时器 -->
+    <task:annotation-driven/>
+	
+</beans>
